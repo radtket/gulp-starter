@@ -1,9 +1,10 @@
-import gulp from 'gulp';
 import autoprefixer from 'autoprefixer';
+import babel from 'gulp-babel';
 import browsersync from 'browser-sync';
 import cssnano from 'cssnano';
 import del from 'del';
 import eslint from 'gulp-eslint';
+import gulp from 'gulp';
 import htmlmin from 'gulp-htmlmin';
 import imagemin from 'gulp-imagemin';
 import newer from 'gulp-newer';
@@ -11,11 +12,10 @@ import plumber from 'gulp-plumber';
 import postcss from 'gulp-postcss';
 import rename from 'gulp-rename';
 import sass from 'gulp-sass';
-import webpack from 'webpack';
-import webpackstream from 'webpack-stream';
-import babel from 'gulp-babel';
 import sassGlob from 'gulp-sass-glob';
 import sourcemaps from 'gulp-sourcemaps';
+import webpack from 'webpack';
+import webpackstream from 'webpack-stream';
 import webpackconfig from './webpack.config';
 
 browsersync.create();
