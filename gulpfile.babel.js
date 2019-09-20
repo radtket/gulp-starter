@@ -31,7 +31,7 @@ project.js = `${project.assets}/js`;
 project.favicon = `${project.assets}/favicon`;
 
 // BrowserSync
-function browserSync(done) {
+const browserSync = (done) => {
   browsersync.init({
     server: {
       baseDir: `${project.dist}/`,
@@ -42,32 +42,25 @@ function browserSync(done) {
 }
 
 // BrowserSync Reload
-function browserSyncReload(done) {
-  browsersync.reload();
-  done();
-}
+// const browserSyncReload = (done) => {
+//   browsersync.reload();
+//   done();
+// }
 
 // Clean assets
-function clean() {
-  return del([`${project.dist}`]);
-}
+const clean = () => del([`${project.dist}`])
 
 // Copy Favicon Assets
-function favicon() {
-  return gulp.src(`${project.favicon}/**/*`).pipe(gulp.dest(`${project.dist}`));
-}
+const favicon = () => gulp.src(`${project.favicon}/**/*`).pipe(gulp.dest(`${project.dist}`))
 
 // Minify HTML
-function html() {
-  return gulp
+const html = () => gulp
     .src(`${project.assets}/index.html`)
     .pipe(htmlmin({ collapseWhitespace: true }))
-    .pipe(gulp.dest(`${project.dist}`));
-}
+    .pipe(gulp.dest(`${project.dist}`))
 
 // Optimize Images
-function images() {
-  return gulp
+const images = () => gulp
     .src(`${project.img}/**/*`)
     .pipe(newer(`${project.dist}/img/`))
     .pipe(
@@ -85,12 +78,10 @@ function images() {
         }),
       ])
     )
-    .pipe(gulp.dest(`${project.dist}/img/`));
-}
+    .pipe(gulp.dest(`${project.dist}/img/`))
 
 // CSS task
-function css() {
-  return gulp
+const css = () => gulp
     .src(`${project.scss}/**/*.scss`)
     .pipe(plumber())
     .pipe(sourcemaps.init())
@@ -100,22 +91,20 @@ function css() {
     .pipe(rename({ suffix: '.min' }))
     .pipe(postcss([autoprefixer(), cssnano()]))
     .pipe(gulp.dest(`${project.dist}/css/`))
-    .pipe(browsersync.stream());
-}
+    .pipe(browsersync.stream())
 
 // Lint scripts
-function scriptsLint() {
-  return gulp
+const scriptsLint = () =>
+   gulp
     .src([`${project.js}/**/*`, './gulpfile.babel.js'])
     .pipe(plumber())
     .pipe(eslint())
-    .pipe(eslint.format());
+    .pipe(eslint.format())
   // .pipe(eslint.failAfterError());
-}
+
 
 // Transpile, concatenate and minify scripts
-function scripts() {
-  return (
+const scripts = () => (
     gulp
       .src([`${project.js}/**/*`])
       .pipe(babel())
@@ -124,11 +113,10 @@ function scripts() {
       // folder only, filename is specified in webpack config
       .pipe(gulp.dest(`${project.dist}/js/`))
       .pipe(browsersync.stream())
-  );
-}
+  )
 
 // Watch files
-function watchFiles() {
+const watchFiles = () => {
   gulp.watch(`${project.assets}/*.html`, html);
   gulp.watch(`${project.scss}/**/*`, css);
   gulp.watch(`${project.js}/**/*`, gulp.series(scriptsLint, scripts));
