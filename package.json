@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "docs/index.html",
   "scripts": {
-    "start": "gulp watch",
+    "start": "gulp && gulp watch",
     "build": "gulp"
   },
   "author": "Taylor Radtke",

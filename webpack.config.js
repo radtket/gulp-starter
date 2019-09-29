@@ -1,17 +1,18 @@
-const path = require('path');
+const path = require("path");
 
 module.exports = {
-  mode: 'production',
-  output: {
-    filename: 'main.bundle.js',
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js?$/,
-        include: [path.resolve(__dirname, './assets/js')],
-        loader: 'babel-loader',
-      },
-    ],
-  },
+	mode: "production",
+	output: {
+		filename: "main.bundle.js"
+	},
+	module: {
+		rules: [
+			{
+				test: /\.js?$/,
+				include: [path.resolve(__dirname, "./assets/js")],
+				exclude: /node_modules/,
+				loader: "babel-loader"
+			}
+		]
+	}
 };
