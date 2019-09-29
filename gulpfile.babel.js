@@ -1,5 +1,4 @@
 import autoprefixer from 'autoprefixer';
-import babel from 'gulp-babel';
 import browsersync from 'browser-sync';
 import cssnano from 'cssnano';
 import del from 'del';
@@ -107,7 +106,6 @@ const scriptsLint = () =>
 const scripts = () => (
     gulp
       .src([`${project.js}/**/*`])
-      .pipe(babel())
       .pipe(plumber())
       .pipe(webpackstream(webpackconfig, webpack))
       // folder only, filename is specified in webpack config
