@@ -39,7 +39,7 @@
     "gulp": "^4.0.0",
     "prettier": "^1.15.2",
     "stylelint-config-standard": "^18.2.0",
-    "stylelint": "^9.2.0",
+    "stylelint": "^15.10.1",
     "webpack-stream": "^5.2.1",
     "webpack": "^4.28.4"
   }
